@@ -16,7 +16,7 @@ const renderInput = () => {
       case 'select':
         return (
           <select
-            className="w-full glass-input rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+className="w-full glass-input rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 select-dropdown"
             {...props}
           >
             <option value="">Select {label}</option>

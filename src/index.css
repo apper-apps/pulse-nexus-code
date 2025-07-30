@@ -102,6 +102,32 @@
   .kanban-drop-zone.drag-over {
     background: rgba(99, 102, 241, 0.1);
     border: 2px dashed rgba(99, 102, 241, 0.4);
+}
+
+  /* Select dropdown styling for better visibility */
+  .select-dropdown {
+    color: #F8FAFC;
+  }
+
+  .select-dropdown option {
+    background-color: #1e293b;
+    color: #F8FAFC;
+    padding: 8px 12px;
+  }
+
+  .select-dropdown option:hover {
+    background-color: #334155;
+  }
+
+  .select-dropdown option:checked {
+    background-color: #6366F1;
+    color: #ffffff;
+  }
+
+  /* For better dropdown UX */
+  .select-dropdown {
+    max-height: 200px;
+    overflow-y: auto;
   }
 }
 
