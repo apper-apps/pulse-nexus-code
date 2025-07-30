@@ -187,8 +187,8 @@ const DealForm = ({ deal, onSave, onClose, companies }) => {
         onChange={(e) => handleChange('company', e.target.value)}
         error={errors.company}
         options={companies?.map(company => ({
-          value: company.id || company.value || company.name,
-          label: company.name || company.label || 'Unknown Company'
+          value: company.Id || company.name,
+          label: company.name || 'Unknown Company'
         })) || []}
       />
       
