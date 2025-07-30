@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useDeals } from "@/hooks/useDeals";
-import { useContacts } from "@/hooks/useContacts";
+import { useCompanies } from "@/hooks/useCompanies";
 import { format } from "date-fns";
 import ApperIcon from "@/components/ApperIcon";
 import Modal from "@/components/molecules/Modal";
@@ -232,12 +232,9 @@ const DealForm = ({ deal, onSave, onClose, companies }) => {
 
 const Deals = () => {
   const { deals, loading, error, createDeal, updateDeal, deleteDeal } = useDeals();
-  const { contacts } = useContacts();
+const { companies } = useCompanies();
   const [showForm, setShowForm] = useState(false);
   const [editingDeal, setEditingDeal] = useState(null);
-
-  const companies = [...new Set(contacts.map(c => c.company))].sort();
-
   const getDealsByStage = (stage) => {
     return deals.filter(deal => deal.stage === stage);
   };
