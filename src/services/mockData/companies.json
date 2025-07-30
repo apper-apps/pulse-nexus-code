@@ -1,0 +1,67 @@
+[
+  {
+    "Id": 1,
+    "name": "TechCorp Solutions",
+    "industry": "Technology",
+    "website": "https://techcorp.com",
+    "address": "123 Tech Street, Silicon Valley, CA 94000",
+    "phone": "+1 (555) 123-4567",
+    "email": "info@techcorp.com",
+    "employees": 250,
+    "revenue": 15000000,
+    "founded": "2015-03-15",
+    "description": "Leading provider of enterprise software solutions specializing in cloud infrastructure and data analytics."
+  },
+  {
+    "Id": 2,
+    "name": "Global Manufacturing Inc",
+    "industry": "Manufacturing",
+    "website": "https://globalmanufacturing.com",
+    "address": "456 Industrial Blvd, Detroit, MI 48201",
+    "phone": "+1 (555) 987-6543",
+    "email": "contact@globalmanufacturing.com",
+    "employees": 1200,
+    "revenue": 85000000,
+    "founded": "1995-08-22",
+    "description": "International manufacturing company specializing in automotive parts and industrial equipment."
+  },
+  {
+    "Id": 3,
+    "name": "HealthTech Innovations",
+    "industry": "Healthcare",
+    "website": "https://healthtech-innovations.com",
+    "address": "789 Medical Center Dr, Boston, MA 02118",
+    "phone": "+1 (555) 456-7890",
+    "email": "hello@healthtech-innovations.com",
+    "employees": 85,
+    "revenue": 8500000,
+    "founded": "2018-11-05",
+    "description": "Innovative healthcare technology company developing AI-powered diagnostic tools and patient management systems."
+  },
+  {
+    "Id": 4,
+    "name": "Green Energy Solutions",
+    "industry": "Renewable Energy",
+    "website": "https://greenenergysolutions.com",
+    "address": "321 Solar Way, Austin, TX 78701",
+    "phone": "+1 (555) 321-9876",
+    "email": "info@greenenergysolutions.com",
+    "employees": 150,
+    "revenue": 22000000,
+    "founded": "2016-06-10",
+    "description": "Renewable energy company focused on solar panel installation and energy storage solutions for commercial and residential clients."
+  },
+  {
+    "Id": 5,
+    "name": "Financial Services Group",
+    "industry": "Financial Services",
+    "website": "https://fsggroup.com",
+    "address": "654 Wall Street, New York, NY 10005",
+    "phone": "+1 (555) 654-3210",
+    "email": "contact@fsggroup.com",
+    "employees": 450,
+    "revenue": 75000000,
+    "founded": "2008-01-18",
+    "description": "Full-service financial firm providing investment management, wealth planning, and corporate financial consulting services."
+  }
+]
