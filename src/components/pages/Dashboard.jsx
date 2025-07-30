@@ -11,6 +11,9 @@ import Chart from "react-apexcharts";
 const Dashboard = () => {
   const { metrics, loading: metricsLoading, error: metricsError, loadMetrics } = useMetrics();
   const { activities, loading: activitiesLoading, error: activitiesError, loadActivities } = useActivities();
+  const [selectedStage, setSelectedStage] = useState(null);
+  const { deals, loading: dealsLoading } = useDeals();
+  const { contacts, loading: contactsLoading } = useContacts();
 
   if (metricsLoading || activitiesLoading) return <Loading />;
   if (metricsError || activitiesError) {
@@ -40,9 +43,6 @@ const Dashboard = () => {
     return trend === "up" ? "text-emerald-400" : "text-red-400";
   };
 
-const [selectedStage, setSelectedStage] = useState(null);
-  const { deals, loading: dealsLoading } = useDeals();
-  const { contacts, loading: contactsLoading } = useContacts();
 
   // Pipeline data for funnel chart
   const pipelineData = deals.reduce((acc, deal) => {
