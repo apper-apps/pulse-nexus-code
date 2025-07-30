@@ -1,9 +1,12 @@
 import ApperIcon from "@/components/ApperIcon";
 import Input from "@/components/atoms/Input";
 
-const SearchBar = ({ value, onChange, placeholder = "Search..." }) => {
+const SearchBar = ({ value, onChange, placeholder = "Search...", onClick, readOnly = false }) => {
   return (
-    <div className="relative">
+    <div 
+      className={`relative ${readOnly ? 'cursor-pointer' : ''}`}
+      onClick={readOnly ? onClick : undefined}
+    >
       <ApperIcon 
         name="Search" 
         size={18} 
@@ -14,8 +17,15 @@ const SearchBar = ({ value, onChange, placeholder = "Search..." }) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="pl-10"
+        onClick={!readOnly ? undefined : onClick}
+        readOnly={readOnly}
+        className={`pl-10 ${readOnly ? 'cursor-pointer bg-slate-800/50 hover:bg-slate-800/70 transition-colors' : ''}`}
       />
+      {readOnly && (
+        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1 text-xs text-slate-500">
+          <kbd className="px-1.5 py-0.5 bg-slate-700 rounded text-xs font-mono">⌘K</kbd>
+        </div>
+      )}
     </div>
   );
 };

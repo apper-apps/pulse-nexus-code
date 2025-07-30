@@ -62,6 +62,18 @@ const dealService = {
     const deleted = deals.splice(index, 1)[0];
     return Promise.resolve({ ...deleted });
   },
+search: (query) => {
+    if (!query.trim()) return Promise.resolve([...deals]);
+    
+    const searchTerm = query.toLowerCase();
+    const filteredDeals = deals.filter(deal => 
+      deal.name.toLowerCase().includes(searchTerm) ||
+      deal.company.toLowerCase().includes(searchTerm) ||
+      deal.stage.toLowerCase().includes(searchTerm)
+    );
+    
+    return Promise.resolve(filteredDeals.map(d => ({ ...d })));
+  },
 
   getByStage: (stage) => {
     return Promise.resolve(deals.filter(d => d.stage === stage).map(d => ({ ...d })));

@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import SearchBar from "@/components/molecules/SearchBar";
-
+import GlobalSearch from "@/components/organisms/GlobalSearch";
 const Header = ({ onMenuClick }) => {
-  const [searchValue, setSearchValue] = useState("");
+const [showGlobalSearch, setShowGlobalSearch] = useState(false);
+
+  // Global keyboard shortcut handler
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setShowGlobalSearch(true);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <header className="glass-card border-b border-white/10 px-6 py-4">
@@ -18,11 +31,11 @@ const Header = ({ onMenuClick }) => {
           >
             <ApperIcon name="Menu" size={20} />
           </Button>
-          <div className="hidden sm:block w-80">
+<div className="hidden sm:block w-80">
             <SearchBar
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search contacts, deals, companies..."
+              placeholder="Search everything... (⌘K)"
+              onClick={() => setShowGlobalSearch(true)}
+              readOnly
             />
           </div>
         </div>
@@ -37,8 +50,14 @@ const Header = ({ onMenuClick }) => {
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
             <ApperIcon name="User" size={16} className="text-white" />
           </div>
-        </div>
+</div>
       </div>
+
+      {/* Global Search Modal */}
+      <GlobalSearch 
+        isOpen={showGlobalSearch}
+        onClose={() => setShowGlobalSearch(false)}
+      />
     </header>
   );
 };

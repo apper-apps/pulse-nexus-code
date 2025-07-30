@@ -57,6 +57,19 @@ export const companyService = {
     companies.splice(index, 1);
     return true;
   },
+async search(query) {
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    await delay(200);
+    if (!query.trim()) return [...companies];
+    
+    const searchTerm = query.toLowerCase();
+    return companies.filter(company => 
+      company.name.toLowerCase().includes(searchTerm) ||
+      company.industry.toLowerCase().includes(searchTerm) ||
+      company.website?.toLowerCase().includes(searchTerm) ||
+      company.description?.toLowerCase().includes(searchTerm)
+    );
+  },
 
   getContactCount: (companyId) => {
     // This would typically come from contactService

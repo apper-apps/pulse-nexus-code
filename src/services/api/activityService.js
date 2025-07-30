@@ -191,5 +191,21 @@ export const activityService = {
     return tasks
       .filter(task => new Date(task.dueDate) < now)
       .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+return tasks
+      .filter(task => new Date(task.dueDate) < now)
+      .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+  },
+
+  async search(query) {
+    await delay(200);
+    if (!query.trim()) return [...activities];
+    
+    const searchTerm = query.toLowerCase();
+    return activities.filter(activity => 
+      activity.description?.toLowerCase().includes(searchTerm) ||
+      activity.outcome?.toLowerCase().includes(searchTerm) ||
+      activity.nextSteps?.toLowerCase().includes(searchTerm) ||
+      activity.type.toLowerCase().includes(searchTerm)
+    );
   }
 };
