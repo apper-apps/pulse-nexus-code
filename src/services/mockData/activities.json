@@ -4,55 +4,87 @@
     "contactId": 1,
     "type": "email",
     "description": "Sent enterprise package pricing information",
-    "date": "2024-01-15T10:30:00Z"
+    "date": "2024-01-15T10:30:00Z",
+    "outcome": "Client requested detailed implementation timeline",
+    "nextSteps": "Schedule technical deep-dive meeting"
   },
   {
     "Id": 2,
     "contactId": 1,
     "type": "call",
     "description": "Initial discovery call - 45 minutes",
-    "date": "2024-01-08T14:00:00Z"
+    "date": "2024-01-08T14:00:00Z",
+    "outcome": "Identified key pain points and budget constraints",
+    "nextSteps": "Send customized proposal by Friday"
   },
   {
     "Id": 3,
     "contactId": 2,
     "type": "meeting",
-    "description": "Demo presentation scheduled for next week",
-    "date": "2024-01-12T14:15:00Z"
+    "description": "Demo presentation completed successfully",
+    "date": "2024-01-12T14:15:00Z",
+    "outcome": "Positive feedback, impressed with UI/UX",
+    "nextSteps": "Await decision by end of week"
   },
   {
     "Id": 4,
     "contactId": 2,
     "type": "email",
     "description": "Follow-up email with case studies",
-    "date": "2024-01-10T09:20:00Z"
+    "date": "2024-01-10T09:20:00Z",
+    "outcome": "Client found case studies relevant and compelling"
   },
   {
     "Id": 5,
     "contactId": 3,
     "type": "call",
     "description": "Technical requirements discussion",
-    "date": "2024-01-10T16:45:00Z"
+    "date": "2024-01-10T16:45:00Z",
+    "outcome": "Clarified integration requirements and timeline",
+    "nextSteps": "Prepare technical proposal with architecture"
   },
   {
     "Id": 6,
     "contactId": 4,
     "type": "meeting",
     "description": "CTO technical review meeting",
-    "date": "2024-01-08T11:20:00Z"
+    "date": "2024-01-08T11:20:00Z",
+    "outcome": "Technical approval received, moving to business terms",
+    "nextSteps": "Connect with procurement team"
   },
   {
     "Id": 7,
     "contactId": 5,
     "type": "email",
     "description": "Integration documentation shared",
-    "date": "2024-01-05T09:30:00Z"
+    "date": "2024-01-05T09:30:00Z",
+    "outcome": "Documentation reviewed and approved by technical team"
   },
   {
     "Id": 8,
     "contactId": 6,
     "type": "call",
     "description": "Partnership discussion - 30 minutes",
-    "date": "2024-01-03T13:10:00Z"
+    "date": "2024-01-03T13:10:00Z",
+    "outcome": "Mutual interest in partnership established",
+    "nextSteps": "Draft partnership proposal for review"
+  },
+  {
+    "Id": 9,
+    "contactId": 1,
+    "type": "follow-up",
+    "description": "Contract negotiation follow-up",
+    "date": "2024-01-16T11:00:00Z",
+    "outcome": "Reached agreement on key terms",
+    "nextSteps": "Send final contract for legal review"
+  },
+  {
+    "Id": 10,
+    "contactId": 3,
+    "type": "meeting",
+    "description": "Quarterly business review scheduled",
+    "date": "2024-01-14T15:30:00Z",
+    "outcome": "Strong satisfaction with current services",
+    "nextSteps": "Explore expansion opportunities"
   }
 ]
