@@ -1,0 +1,90 @@
+[
+  {
+    "Id": 1,
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@techcorp.com",
+    "phone": "+1 (555) 123-4567",
+    "company": "TechCorp Solutions",
+    "notes": "Interested in enterprise package. Follow up next week about pricing.",
+    "lastContactDate": "2024-01-15T10:30:00Z",
+    "createdAt": "2024-01-01T09:00:00Z",
+    "tags": ["Enterprise", "Hot Lead", "Tech"]
+  },
+  {
+    "Id": 2,
+    "name": "Michael Chen",
+    "email": "m.chen@innovateplus.io",
+    "phone": "+1 (555) 234-5678",
+    "company": "InnovatePlus",
+    "notes": "CEO of startup. Looking for scalable solutions. Budget approved.",
+    "lastContactDate": "2024-01-12T14:15:00Z",
+    "createdAt": "2023-12-15T11:30:00Z",
+    "tags": ["CEO", "Startup", "Budget Approved"]
+  },
+  {
+    "Id": 3,
+    "name": "Emily Rodriguez",
+    "email": "emily.r@globalventures.com",
+    "phone": "+1 (555) 345-6789",
+    "company": "Global Ventures",
+    "notes": "VP of Operations. Needs demo of platform features. Very interested.",
+    "lastContactDate": "2024-01-10T16:45:00Z",
+    "createdAt": "2023-12-20T13:20:00Z",
+    "tags": ["VP", "Demo Requested", "Platform"]
+  },
+  {
+    "Id": 4,
+    "name": "David Thompson",
+    "email": "d.thompson@nexustech.com",
+    "phone": "+1 (555) 456-7890",
+    "company": "Nexus Technologies",
+    "notes": "CTO evaluating multiple solutions. Technical discussion scheduled.",
+    "lastContactDate": "2024-01-08T11:20:00Z",
+    "createdAt": "2023-11-30T15:45:00Z",
+    "tags": ["CTO", "Technical", "Evaluation"]
+  },
+  {
+    "Id": 5,
+    "name": "Lisa Wang",
+    "email": "lisa.wang@futuresoft.com",
+    "phone": "+1 (555) 567-8901",
+    "company": "FutureSoft Inc",
+    "notes": "Product Manager interested in integration capabilities.",
+    "lastContactDate": "2024-01-05T09:30:00Z",
+    "createdAt": "2023-12-10T10:15:00Z",
+    "tags": ["Product Manager", "Integration", "Software"]
+  },
+  {
+    "Id": 6,
+    "name": "Robert Miller",
+    "email": "robert.miller@alphagroup.com",
+    "phone": "+1 (555) 678-9012",
+    "company": "Alpha Group",
+    "notes": "Director of Sales. Potential partnership opportunity.",
+    "lastContactDate": "2024-01-03T13:10:00Z",
+    "createdAt": "2023-11-25T12:00:00Z",
+    "tags": ["Director", "Partnership", "Sales"]
+  },
+  {
+    "Id": 7,
+    "name": "Jennifer Adams",
+    "email": "j.adams@betatech.com",
+    "phone": "+1 (555) 789-0123",
+    "company": "Beta Technologies",
+    "notes": "IT Manager looking for cloud solutions. Security is main concern.",
+    "lastContactDate": "2023-12-28T15:20:00Z",
+    "createdAt": "2023-12-01T14:30:00Z",
+    "tags": ["IT Manager", "Cloud", "Security"]
+  },
+  {
+    "Id": 8,
+    "name": "Kevin Park",
+    "email": "kevin.park@gamma.com",
+    "phone": "+1 (555) 890-1234",
+    "company": "Gamma Corporation",
+    "notes": "Business Analyst. Requested detailed ROI analysis.",
+    "lastContactDate": "2023-12-20T10:45:00Z",
+    "createdAt": "2023-11-20T16:20:00Z",
+    "tags": ["Business Analyst", "ROI", "Analysis"]
+  }
+]

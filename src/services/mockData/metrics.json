@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Total Contacts",
+    "value": 847,
+    "change": 12.5,
+    "trend": "up"
+  },
+  {
+    "label": "Active Deals",
+    "value": 23,
+    "change": 8.3,
+    "trend": "up"
+  },
+  {
+    "label": "Deal Value",
+    "value": 284750,
+    "change": -2.1,
+    "trend": "down"
+  },
+  {
+    "label": "Activities This Week",
+    "value": 56,
+    "change": 15.7,
+    "trend": "up"
+  }
+]

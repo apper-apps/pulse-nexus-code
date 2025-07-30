@@ -1,0 +1,58 @@
+[
+  {
+    "Id": 1,
+    "contactId": 1,
+    "type": "email",
+    "description": "Sent enterprise package pricing information",
+    "date": "2024-01-15T10:30:00Z"
+  },
+  {
+    "Id": 2,
+    "contactId": 1,
+    "type": "call",
+    "description": "Initial discovery call - 45 minutes",
+    "date": "2024-01-08T14:00:00Z"
+  },
+  {
+    "Id": 3,
+    "contactId": 2,
+    "type": "meeting",
+    "description": "Demo presentation scheduled for next week",
+    "date": "2024-01-12T14:15:00Z"
+  },
+  {
+    "Id": 4,
+    "contactId": 2,
+    "type": "email",
+    "description": "Follow-up email with case studies",
+    "date": "2024-01-10T09:20:00Z"
+  },
+  {
+    "Id": 5,
+    "contactId": 3,
+    "type": "call",
+    "description": "Technical requirements discussion",
+    "date": "2024-01-10T16:45:00Z"
+  },
+  {
+    "Id": 6,
+    "contactId": 4,
+    "type": "meeting",
+    "description": "CTO technical review meeting",
+    "date": "2024-01-08T11:20:00Z"
+  },
+  {
+    "Id": 7,
+    "contactId": 5,
+    "type": "email",
+    "description": "Integration documentation shared",
+    "date": "2024-01-05T09:30:00Z"
+  },
+  {
+    "Id": 8,
+    "contactId": 6,
+    "type": "call",
+    "description": "Partnership discussion - 30 minutes",
+    "date": "2024-01-03T13:10:00Z"
+  }
+]
