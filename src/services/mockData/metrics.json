@@ -12,14 +12,14 @@
     "trend": "up"
   },
   {
-    "label": "Deal Value",
+    "label": "Pipeline Value",
     "value": 284750,
     "change": -2.1,
     "trend": "down"
   },
   {
-    "label": "Activities This Week",
-    "value": 56,
+    "label": "Monthly Revenue",
+    "value": 45000,
     "change": 15.7,
     "trend": "up"
   }
