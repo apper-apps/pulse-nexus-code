@@ -157,11 +157,10 @@ const Activities = () => {
     return matchesSearch && matchesType;
   }) || [];
 
-  const getContactName = (contactId) => {
+const getContactName = (contactId) => {
     const contact = contacts?.find(c => c.Id === contactId);
-    return contact ? `${contact.firstName} ${contact.lastName}` : 'Unknown Contact';
+    return contact ? contact.name : 'Unknown Contact';
   };
-
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -493,11 +492,11 @@ const Activities = () => {
               type="select"
               value={taskForm.contactId}
               onChange={(e) => setTaskForm({ ...taskForm, contactId: e.target.value })}
-              options={[
+options={[
                 { value: '', label: 'Select Contact...' },
                 ...(contacts?.map(contact => ({
                   value: contact.Id.toString(),
-                  label: `${contact.firstName} ${contact.lastName}`
+                  label: contact.name
                 })) || [])
               ]}
               required
@@ -546,11 +545,11 @@ const Activities = () => {
               type="select"
               value={activityForm.contactId}
               onChange={(e) => setActivityForm({ ...activityForm, contactId: e.target.value })}
-              options={[
+options={[
                 { value: '', label: 'Select Contact...' },
                 ...(contacts?.map(contact => ({
                   value: contact.Id.toString(),
-                  label: `${contact.firstName} ${contact.lastName}`
+                  label: contact.name
                 })) || [])
               ]}
               required
