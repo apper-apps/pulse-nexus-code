@@ -185,13 +185,10 @@ export const activityService = {
       .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
   },
 
-  async getOverdueTasks() {
+async getOverdueTasks() {
     await delay(200);
     const now = new Date();
     return tasks
-      .filter(task => new Date(task.dueDate) < now)
-      .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-return tasks
       .filter(task => new Date(task.dueDate) < now)
       .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
   },
