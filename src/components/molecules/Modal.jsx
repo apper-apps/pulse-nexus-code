@@ -24,8 +24,8 @@ const Modal = ({ isOpen, onClose, title, children, className = "" }) => {
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className={cn(
-        "relative glass-card rounded-xl p-6 w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto",
+<div className={cn(
+        "relative glass-card rounded-xl p-6 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto",
         className
       )}>
         <div className="flex items-center justify-between mb-6">

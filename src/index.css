@@ -70,6 +70,38 @@
     background: rgba(255, 255, 255, 0.12);
     border-color: #6366F1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+  /* Kanban Board Styles */
+  .kanban-board {
+    min-height: 600px;
+  }
+
+  .kanban-column {
+    min-width: 280px;
+  }
+
+  .kanban-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 200ms ease-in-out;
+  }
+
+  .kanban-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .kanban-drop-zone {
+    transition: all 200ms ease-in-out;
+    border-radius: 8px;
+  }
+
+  .kanban-drop-zone.drag-over {
+    background: rgba(99, 102, 241, 0.1);
+    border: 2px dashed rgba(99, 102, 241, 0.4);
   }
 }
 
