@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import SearchBar from "@/components/molecules/SearchBar";
 import GlobalSearch from "@/components/organisms/GlobalSearch";
 const Header = ({ onMenuClick }) => {
 const [showGlobalSearch, setShowGlobalSearch] = useState(false);
@@ -31,13 +30,6 @@ const [showGlobalSearch, setShowGlobalSearch] = useState(false);
           >
             <ApperIcon name="Menu" size={20} />
           </Button>
-<div className="hidden sm:block w-80">
-            <SearchBar
-              placeholder="Search everything... (⌘K)"
-              onClick={() => setShowGlobalSearch(true)}
-              readOnly
-            />
-          </div>
         </div>
         
         <div className="flex items-center gap-3">
