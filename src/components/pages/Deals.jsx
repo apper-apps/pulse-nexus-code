@@ -180,13 +180,16 @@ const DealForm = ({ deal, onSave, onClose, companies }) => {
         error={errors.name}
       />
       
-      <FormField
+<FormField
         label="Company"
         type="select"
         value={formData.company}
         onChange={(e) => handleChange('company', e.target.value)}
         error={errors.company}
-        options={companies}
+        options={companies?.map(company => ({
+          value: company.id || company.value || company.name,
+          label: company.name || company.label || 'Unknown Company'
+        })) || []}
       />
       
       <FormField
