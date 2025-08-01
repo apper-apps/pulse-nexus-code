@@ -59,10 +59,10 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
 
     setIsSubmitting(true);
     
-    try {
+try {
       const contactData = {
         ...formData,
-        tags: formData.tags ? formData.tags.split(",").map(tag => tag.trim()).filter(Boolean) : []
+        tags: formData.tags ? formData.tags.split(",").map(tag => tag.trim()).filter(Boolean).join(",") : ""
       };
       
       await onSave(contactData);
