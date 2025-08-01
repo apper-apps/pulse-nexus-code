@@ -52,17 +52,20 @@ const DealCard = ({ deal, onEdit, onDelete }) => {
             <ApperIcon name="Trash2" size={12} />
           </Button>
         </div>
-      </div>
-      
-      <p className="text-slate-300 text-xs mb-2">{deal.company}</p>
-      
-      <div className="flex justify-between items-center text-xs">
-        <span className="text-green-400 font-medium">
-          ${deal.value.toLocaleString()}
-        </span>
-        <span className="text-slate-400">
-          {format(new Date(deal.expectedCloseDate), 'MMM dd')}
-        </span>
+</div>
+      <div className="mb-3">
+        <p className="text-white font-medium text-sm mb-1">{deal.Name || deal.name}</p>
+        <p className="text-slate-300 text-xs mb-2">
+          {companies?.find(company => company.Id == deal.company)?.Name || deal.company || 'No Company'}
+        </p>
+        <div className="flex justify-between items-center">
+          <span className="text-green-400 font-medium">
+            ${deal.value?.toLocaleString() || '0'}
+          </span>
+          <span className="text-slate-400 text-xs">
+            {deal.expectedCloseDate ? format(new Date(deal.expectedCloseDate), 'MMM dd') : 'No date'}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -134,7 +137,7 @@ const KanbanColumn = ({ stage, deals, onDrop, onEdit, onDelete }) => {
 
 const DealForm = ({ deal, onSave, onClose, companies }) => {
   const [formData, setFormData] = useState({
-name: deal?.name || '',
+    name: deal?.Name || deal?.name || '',
     company: deal?.company || '',
     value: deal?.value || '',
     stage: deal?.stage || 'Lead',
@@ -160,11 +163,13 @@ name: deal?.name || '',
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       onSave({
         ...formData,
+        Name: formData.name,
+        company: formData.company, // This will be the company ID
         value: parseFloat(formData.value)
       });
     }
