@@ -23,10 +23,10 @@ className="w-full glass-input rounded-lg px-4 py-3 text-white placeholder-slate-
 {options?.map((option, index) => {
               // Handle both string and object options
               const optionValue = typeof option === 'object' 
-                ? (option.Id || option.id || option.value || option.name || '') 
+                ? (option.value || option.Id || option.id || option.name || '') 
                 : option;
               const optionLabel = typeof option === 'object' 
-                ? (option.name || option.label || option.value || 'Unknown') 
+                ? (option.label || option.name || option.value || 'Unknown') 
                 : option;
               
               return (
