@@ -13,22 +13,22 @@ const CompanyDetail = ({ company, onEdit, onDelete }) => {
   const [companyContacts, setCompanyContacts] = useState([]);
   const [companyDeals, setCompanyDeals] = useState([]);
 
-  useEffect(() => {
+useEffect(() => {
     if (company && contacts) {
       // Filter contacts by company (this would ideally be done through a proper relationship)
       const relatedContacts = contacts.filter(contact => 
-        contact.company?.toLowerCase().includes(company.name.toLowerCase()) ||
-        contact.email?.includes(company.name.toLowerCase().replace(/\s+/g, ''))
+        contact.company?.toLowerCase().includes(company.name?.toLowerCase() || '') ||
+        contact.email?.includes((company.name?.toLowerCase() || '').replace(/\s+/g, ''))
       );
       setCompanyContacts(relatedContacts);
     }
   }, [company, contacts]);
 
-  useEffect(() => {
+useEffect(() => {
     if (company && deals) {
       // Filter deals by company (this would ideally be done through a proper relationship)
       const relatedDeals = deals.filter(deal => 
-        deal.company?.toLowerCase().includes(company.name.toLowerCase())
+        deal.company?.toLowerCase().includes(company.name?.toLowerCase() || '')
       );
       setCompanyDeals(relatedDeals);
     }
