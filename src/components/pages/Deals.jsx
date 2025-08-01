@@ -182,9 +182,8 @@ const handleSubmit = (e) => {
         value={formData.name}
         onChange={(e) => handleChange('name', e.target.value)}
         placeholder="Enter deal name"
-        error={errors.name}
+error={errors.name}
       />
-/>
       
       <FormField
 label="Company"
