@@ -20,7 +20,7 @@ const STAGES = [
   { key: 'Closed Lost', name: 'Closed Lost', color: 'bg-red-500' }
 ];
 
-const DealCard = ({ deal, onEdit, onDelete }) => {
+const DealCard = ({ deal, onEdit, onDelete, companies }) => {
   const handleDragStart = (e) => {
     e.dataTransfer.setData('text/plain', deal.Id.toString());
     e.dataTransfer.effectAllowed = 'move';
@@ -71,7 +71,7 @@ const DealCard = ({ deal, onEdit, onDelete }) => {
   );
 };
 
-const KanbanColumn = ({ stage, deals, onDrop, onEdit, onDelete }) => {
+const KanbanColumn = ({ stage, deals, onDrop, onEdit, onDelete, companies }) => {
   const [dragOver, setDragOver] = useState(false);
   
   const totalValue = deals.reduce((sum, deal) => sum + deal.value, 0);
@@ -115,12 +115,13 @@ const KanbanColumn = ({ stage, deals, onDrop, onEdit, onDelete }) => {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
         >
-          {deals.map(deal => (
+{deals.map(deal => (
             <DealCard
               key={deal.Id}
               deal={deal}
               onEdit={onEdit}
               onDelete={onDelete}
+              companies={companies}
             />
           ))}
           
@@ -315,7 +316,7 @@ const { deals, loading, error, createDeal, updateDeal, deleteDeal } = useDeals()
       </div>
 
       <div className="kanban-board flex gap-4 overflow-x-auto pb-4">
-        {STAGES.map(stage => (
+{STAGES.map(stage => (
           <KanbanColumn
             key={stage.key}
             stage={stage}
@@ -323,6 +324,7 @@ const { deals, loading, error, createDeal, updateDeal, deleteDeal } = useDeals()
             onDrop={handleDrop}
             onEdit={handleEditDeal}
             onDelete={handleDeleteDeal}
+            companies={companies}
           />
         ))}
       </div>
