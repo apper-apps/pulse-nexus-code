@@ -51,8 +51,8 @@ const DealCard = ({ deal, onEdit, onDelete }) => {
           >
             <ApperIcon name="Trash2" size={12} />
           </Button>
-        </div>
 </div>
+      </div>
       <div className="mb-3">
         <p className="text-white font-medium text-sm mb-1">{deal.Name || deal.name}</p>
         <p className="text-slate-300 text-xs mb-2">
@@ -184,16 +184,17 @@ const handleSubmit = (e) => {
         placeholder="Enter deal name"
         error={errors.name}
       />
+/>
       
-<FormField
-        label="Company"
+      <FormField
+label="Company"
         type="select"
         value={formData.company}
         onChange={(e) => handleChange('company', e.target.value)}
         error={errors.company}
-        options={companies?.map(company => ({
+options={companies?.map(company => ({
           value: company.Id,
-          label: company.name
+          label: company.Name || company.name
         })) || []}
       />
       
@@ -236,8 +237,8 @@ const handleSubmit = (e) => {
 };
 
 const Deals = () => {
-  const { deals, loading, error, createDeal, updateDeal, deleteDeal } = useDeals();
-const { companies } = useCompanies();
+const { deals, loading, error, createDeal, updateDeal, deleteDeal } = useDeals();
+  const { companies } = useCompanies();
   const [showForm, setShowForm] = useState(false);
   const [editingDeal, setEditingDeal] = useState(null);
   const getDealsByStage = (stage) => {
