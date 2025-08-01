@@ -23,16 +23,18 @@ const Companies = () => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [formLoading, setFormLoading] = useState(false);
 
-  // Filter and sort companies
-  const filteredCompanies = companies.filter(company =>
-    company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    company.industry.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+// Filter and sort companies
+  const filteredCompanies = companies.filter(company => {
+    if (!company) return false;
+    const name = company.Name || '';
+    const industry = company.industry || '';
+    return name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           industry.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const sortedCompanies = [...filteredCompanies].sort((a, b) => {
-    let aVal = a[sortField];
-    let bVal = b[sortField];
-    
+    let aVal = a?.[sortField] || '';
+    let bVal = b?.[sortField] || '';
     if (typeof aVal === 'string') {
       aVal = aVal.toLowerCase();
       bVal = bVal.toLowerCase();
