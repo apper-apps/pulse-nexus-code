@@ -64,9 +64,8 @@ const deleteContact = async (id) => {
       const data = await contactService.search(query);
       setContacts(data);
     } catch (err) {
-      setError(err.message || "Failed to search contacts");
+setError(err.message || "Failed to search contacts");
     } finally {
-} finally {
       setLoading(false);
     }
   };

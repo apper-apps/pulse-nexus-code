@@ -67,8 +67,8 @@ const success = await companyService.delete(id);
     }
   };
 
-  const getCompanyById = (id) => {
-return await companyService.getById(id);
+const getCompanyById = async (id) => {
+    return await companyService.getById(id);
   };
 
   useEffect(() => {
