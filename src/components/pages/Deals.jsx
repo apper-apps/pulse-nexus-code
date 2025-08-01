@@ -134,7 +134,7 @@ const KanbanColumn = ({ stage, deals, onDrop, onEdit, onDelete }) => {
 
 const DealForm = ({ deal, onSave, onClose, companies }) => {
   const [formData, setFormData] = useState({
-    name: deal?.name || '',
+name: deal?.name || '',
     company: deal?.company || '',
     value: deal?.value || '',
     stage: deal?.stage || 'Lead',
