@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import Button from "@/components/atoms/Button";
 import FormField from "@/components/molecules/FormField";
 import { toast } from "react-toastify";
-
+import { companyService } from "@/services/api/companyService";
 const ContactForm = ({ contact, onSave, onCancel }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -14,6 +14,26 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [companies, setCompanies] = useState([]);
+  const [loadingCompanies, setLoadingCompanies] = useState(true);
+
+  // Fetch companies for the lookup dropdown
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      try {
+        setLoadingCompanies(true);
+        const companiesData = await companyService.getAll();
+        setCompanies(companiesData);
+      } catch (error) {
+        console.error("Failed to fetch companies:", error);
+        toast.error("Failed to load companies");
+      } finally {
+        setLoadingCompanies(false);
+      }
+    };
+
+    fetchCompanies();
+  }, []);
 
   useEffect(() => {
     if (contact) {
@@ -130,6 +150,15 @@ try {
         onChange={handleChange("tags")}
         error={errors.tags}
         placeholder="Enter tags separated by commas"
+      />
+<FormField
+        label="Company"
+        type="select"
+        value={formData.company}
+        onChange={handleChange("company")}
+        error={errors.company}
+        options={companies}
+        disabled={loadingCompanies}
       />
 
       <FormField
