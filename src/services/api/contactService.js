@@ -35,7 +35,7 @@ export const contactService = {
         return [];
       }
 
-      return response.data || [];
+return response.data || [];
     } catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error fetching contacts:", error?.response?.data?.message);
@@ -76,7 +76,7 @@ export const contactService = {
       }
 
       return response.data;
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error(`Error fetching contact with ID ${id}:`, error?.response?.data?.message);
       } else {
@@ -133,7 +133,7 @@ export const contactService = {
         
         return successfulRecords.length > 0 ? successfulRecords[0].data : null;
       }
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error creating contact:", error?.response?.data?.message);
       } else {
@@ -290,7 +290,7 @@ export const contactService = {
       }
 
       return response.data || [];
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error searching contacts:", error?.response?.data?.message);
       } else {

@@ -13,8 +13,8 @@ export const globalSearchService = {
     
     try {
       const [contacts, companies, deals, activities] = await Promise.all([
-        contactService.search(query),
-(await import('./dealService')).default.search(query),
+contactService.search(query),
+        dealService.search(query),
         dealService.search(query),
         activityService.search(query)
       ]);
@@ -25,7 +25,7 @@ export const globalSearchService = {
         deals: deals.slice(0, 5),
         activities: activities.slice(0, 5)
       };
-    } catch (error) {
+} catch (error) {
       console.error('Global search error:', error);
       return { contacts: [], companies: [], deals: [], activities: [] };
     }

@@ -37,7 +37,7 @@ export const companyService = {
       }
 
       return response.data || [];
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error fetching companies:", error?.response?.data?.message);
       } else {
@@ -79,7 +79,7 @@ export const companyService = {
         return null;
       }
 
-      return response.data;
+return response.data;
     } catch (error) {
       if (error?.response?.data?.message) {
         console.error(`Error fetching company with ID ${id}:`, error?.response?.data?.message);
@@ -140,7 +140,7 @@ export const companyService = {
         
         return successfulRecords.length > 0 ? successfulRecords[0].data : null;
       }
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error creating company:", error?.response?.data?.message);
       } else {
@@ -245,7 +245,7 @@ export const companyService = {
         
         return successfulDeletions.length > 0;
       }
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error deleting company:", error?.response?.data?.message);
       } else {
@@ -304,7 +304,7 @@ export const companyService = {
       }
 
       return response.data || [];
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error searching companies:", error?.response?.data?.message);
       } else {

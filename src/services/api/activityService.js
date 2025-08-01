@@ -91,7 +91,7 @@ export const activityService = {
 
       return response.data || [];
     } catch (error) {
-      if (error?.response?.data?.message) {
+if (error?.response?.data?.message) {
         console.error("Error fetching activities:", error?.response?.data?.message);
       } else {
         console.error(error.message);
@@ -99,7 +99,6 @@ export const activityService = {
       return [];
     }
   },
-
   async getTasks() {
     await delay(200);
     return [...tasks].sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
@@ -138,7 +137,7 @@ export const activityService = {
       }
 
       return response.data || [];
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error fetching activities by contact:", error?.response?.data?.message);
       } else {
@@ -318,7 +317,7 @@ export const activityService = {
       }
 
       return response.data || [];
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error fetching recent activities:", error?.response?.data?.message);
       } else {
@@ -389,7 +388,7 @@ export const activityService = {
       }
 
       return response.data || [];
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error searching activities:", error?.response?.data?.message);
       } else {

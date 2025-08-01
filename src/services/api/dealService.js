@@ -36,7 +36,7 @@ const dealService = {
     } catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error fetching deals:", error?.response?.data?.message);
-      } else {
+} else {
         console.error(error.message);
       }
       return [];
@@ -282,7 +282,7 @@ const dealService = {
       }
 
       return response.data || [];
-    } catch (error) {
+} catch (error) {
       if (error?.response?.data?.message) {
         console.error("Error searching deals:", error?.response?.data?.message);
       } else {
@@ -325,7 +325,7 @@ const dealService = {
 
       return response.data || [];
     } catch (error) {
-      if (error?.response?.data?.message) {
+if (error?.response?.data?.message) {
         console.error("Error fetching deals by stage:", error?.response?.data?.message);
       } else {
         console.error(error.message);

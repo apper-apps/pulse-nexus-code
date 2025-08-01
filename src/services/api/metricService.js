@@ -34,14 +34,13 @@ export const metricService = {
       return response.data || [];
     } catch (error) {
       if (error?.response?.data?.message) {
-        console.error("Error fetching metrics:", error?.response?.data?.message);
+console.error("Error fetching metrics:", error?.response?.data?.message);
       } else {
         console.error(error.message);
       }
       return [];
     }
   },
-
   async getDashboardMetrics() {
     try {
       // Get live data from other services to calculate real metrics
@@ -99,7 +98,7 @@ export const metricService = {
 
       return liveMetrics;
     } catch (error) {
-      if (error?.response?.data?.message) {
+if (error?.response?.data?.message) {
         console.error("Error calculating dashboard metrics:", error?.response?.data?.message);
       } else {
         console.error(error.message);
