@@ -39,14 +39,14 @@ const ContactDetail = ({ contact, activities, onEdit, onDelete, onClose }) => {
       
       <div className="absolute right-0 top-0 h-full w-full max-w-2xl glass-card lg:rounded-xl lg:relative lg:max-w-none">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/10">
+<div className="flex items-center justify-between p-6 border-b border-white/10">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-lg font-semibold">
-              {contact.name.charAt(0).toUpperCase()}
+              {contact?.name?.charAt(0)?.toUpperCase() || 'N'}
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-white">{contact.name}</h2>
-              <p className="text-slate-400">{contact.company}</p>
+              <h2 className="text-xl font-semibold text-white">{contact?.name || 'Unknown Contact'}</h2>
+              <p className="text-slate-400">{contact?.company || 'No Company'}</p>
             </div>
           </div>
           
