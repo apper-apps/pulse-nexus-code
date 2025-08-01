@@ -1,6 +1,6 @@
-import activitiesData from "@/services/mockData/activities.json";
+import { toast } from 'react-toastify';
 
-let activities = [...activitiesData];
+// In-memory tasks storage for features not covered by app_Activity table
 let tasks = [
   {
     Id: 1,
@@ -58,8 +58,46 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const activityService = {
   async getAll() {
-    await delay(200);
-    return [...activities];
+    try {
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "contactId" } },
+          { field: { Name: "type" } },
+          { field: { Name: "description" } },
+          { field: { Name: "date" } },
+          { field: { Name: "outcome" } },
+          { field: { Name: "nextSteps" } },
+          { field: { Name: "Tags" } },
+          { field: { Name: "Owner" } }
+        ],
+        orderBy: [{ fieldName: "date", sorttype: "DESC" }],
+        pagingInfo: { limit: 100, offset: 0 }
+      };
+
+      const response = await apperClient.fetchRecords('app_Activity', params);
+
+      if (!response.success) {
+        console.error(response.message);
+        toast.error(response.message);
+        return [];
+      }
+
+      return response.data || [];
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching activities:", error?.response?.data?.message);
+      } else {
+        console.error(error.message);
+      }
+      return [];
+    }
   },
 
   async getTasks() {
@@ -68,22 +106,103 @@ export const activityService = {
   },
 
   async getByContactId(contactId) {
-    await delay(250);
-    return activities
-      .filter(activity => activity.contactId === parseInt(contactId))
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    try {
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "contactId" } },
+          { field: { Name: "type" } },
+          { field: { Name: "description" } },
+          { field: { Name: "date" } },
+          { field: { Name: "outcome" } },
+          { field: { Name: "nextSteps" } },
+          { field: { Name: "Tags" } },
+          { field: { Name: "Owner" } }
+        ],
+        where: [{ FieldName: "contactId", Operator: "EqualTo", Values: [parseInt(contactId)] }],
+        orderBy: [{ fieldName: "date", sorttype: "DESC" }],
+        pagingInfo: { limit: 100, offset: 0 }
+      };
+
+      const response = await apperClient.fetchRecords('app_Activity', params);
+
+      if (!response.success) {
+        console.error(response.message);
+        return [];
+      }
+
+      return response.data || [];
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching activities by contact:", error?.response?.data?.message);
+      } else {
+        console.error(error.message);
+      }
+      return [];
+    }
   },
 
   async create(activityData) {
-    await delay(300);
-    const newActivity = {
-      ...activityData,
-      Id: Math.max(...activities.map(a => a.Id), 0) + 1,
-      contactId: parseInt(activityData.contactId),
-      date: new Date().toISOString()
-    };
-    activities.unshift(newActivity);
-    return { ...newActivity };
+    try {
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      // Only include Updateable fields
+      const params = {
+        records: [{
+          Name: activityData.Name || `${activityData.type} - ${new Date().toLocaleDateString()}`,
+          contactId: parseInt(activityData.contactId),
+          type: activityData.type,
+          description: activityData.description,
+          date: new Date().toISOString(),
+          outcome: activityData.outcome,
+          nextSteps: activityData.nextSteps,
+          Tags: activityData.Tags || activityData.tags
+        }]
+      };
+
+      const response = await apperClient.createRecord('app_Activity', params);
+
+      if (!response.success) {
+        console.error(response.message);
+        toast.error(response.message);
+        throw new Error(response.message);
+      }
+
+      if (response.results) {
+        const successfulRecords = response.results.filter(result => result.success);
+        const failedRecords = response.results.filter(result => !result.success);
+        
+        if (failedRecords.length > 0) {
+          console.error(`Failed to create activities ${failedRecords.length} records:${JSON.stringify(failedRecords)}`);
+          
+          failedRecords.forEach(record => {
+            record.errors?.forEach(error => {
+              toast.error(`${error.fieldLabel}: ${error.message}`);
+            });
+            if (record.message) toast.error(record.message);
+          });
+        }
+        
+        return successfulRecords.length > 0 ? successfulRecords[0].data : null;
+      }
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error creating activity:", error?.response?.data?.message);
+      } else {
+        console.error(error.message);
+      }
+      throw error;
+    }
   },
 
   async createTask(taskData) {
@@ -108,18 +227,14 @@ export const activityService = {
 
     const task = tasks[taskIndex];
     
-    // Create activity from completed task
-    const completedActivity = {
-      Id: Math.max(...activities.map(a => a.Id), 0) + 1,
+    // Create activity from completed task using database
+    const completedActivity = await this.create({
       contactId: task.contactId,
       type: task.type,
       description: task.description,
       outcome: completionData.outcome,
-      nextSteps: completionData.nextSteps,
-      date: new Date().toISOString()
-    };
-    
-    activities.unshift(completedActivity);
+      nextSteps: completionData.nextSteps
+    });
 
     // Create follow-up task if specified
     if (completionData.followUpDate && completionData.followUpType) {
@@ -172,10 +287,45 @@ export const activityService = {
   },
 
   async getRecent(limit = 10) {
-    await delay(200);
-    return activities
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, limit);
+    try {
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "contactId" } },
+          { field: { Name: "type" } },
+          { field: { Name: "description" } },
+          { field: { Name: "date" } },
+          { field: { Name: "outcome" } },
+          { field: { Name: "nextSteps" } },
+          { field: { Name: "Tags" } },
+          { field: { Name: "Owner" } }
+        ],
+        orderBy: [{ fieldName: "date", sorttype: "DESC" }],
+        pagingInfo: { limit: limit, offset: 0 }
+      };
+
+      const response = await apperClient.fetchRecords('app_Activity', params);
+
+      if (!response.success) {
+        console.error(response.message);
+        return [];
+      }
+
+      return response.data || [];
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching recent activities:", error?.response?.data?.message);
+      } else {
+        console.error(error.message);
+      }
+      return [];
+    }
   },
 
   async getTasksByContactId(contactId) {
@@ -185,7 +335,7 @@ export const activityService = {
       .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
   },
 
-async getOverdueTasks() {
+  async getOverdueTasks() {
     await delay(200);
     const now = new Date();
     return tasks
@@ -194,15 +344,58 @@ async getOverdueTasks() {
   },
 
   async search(query) {
-    await delay(200);
-    if (!query.trim()) return [...activities];
-    
-    const searchTerm = query.toLowerCase();
-    return activities.filter(activity => 
-      activity.description?.toLowerCase().includes(searchTerm) ||
-      activity.outcome?.toLowerCase().includes(searchTerm) ||
-      activity.nextSteps?.toLowerCase().includes(searchTerm) ||
-      activity.type.toLowerCase().includes(searchTerm)
-    );
+    try {
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      if (!query.trim()) return this.getAll();
+
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "contactId" } },
+          { field: { Name: "type" } },
+          { field: { Name: "description" } },
+          { field: { Name: "date" } },
+          { field: { Name: "outcome" } },
+          { field: { Name: "nextSteps" } },
+          { field: { Name: "Tags" } },
+          { field: { Name: "Owner" } }
+        ],
+        whereGroups: [{
+          operator: "OR",
+          subGroups: [{
+            conditions: [
+              { fieldName: "description", operator: "Contains", values: [query] },
+              { fieldName: "outcome", operator: "Contains", values: [query] },
+              { fieldName: "nextSteps", operator: "Contains", values: [query] },
+              { fieldName: "type", operator: "Contains", values: [query] }
+            ],
+            operator: "OR"
+          }]
+        }],
+        orderBy: [{ fieldName: "date", sorttype: "DESC" }],
+        pagingInfo: { limit: 100, offset: 0 }
+      };
+
+      const response = await apperClient.fetchRecords('app_Activity', params);
+
+      if (!response.success) {
+        console.error(response.message);
+        return [];
+      }
+
+      return response.data || [];
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error searching activities:", error?.response?.data?.message);
+      } else {
+        console.error(error.message);
+      }
+      return [];
+    }
   }
 };

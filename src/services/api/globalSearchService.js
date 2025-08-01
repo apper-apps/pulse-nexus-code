@@ -14,7 +14,7 @@ export const globalSearchService = {
     try {
       const [contacts, companies, deals, activities] = await Promise.all([
         contactService.search(query),
-        companyService.search(query),
+(await import('./dealService')).default.search(query),
         dealService.search(query),
         activityService.search(query)
       ]);

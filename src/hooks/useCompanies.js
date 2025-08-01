@@ -11,7 +11,7 @@ export const useCompanies = () => {
     try {
       setLoading(true);
       setError(null);
-      const data = companyService.getAll();
+const data = await companyService.getAll();
       setCompanies(data);
     } catch (err) {
       setError(err.message);
@@ -23,7 +23,7 @@ export const useCompanies = () => {
 
   const createCompany = async (companyData) => {
     try {
-      const newCompany = companyService.create(companyData);
+const newCompany = await companyService.create(companyData);
       setCompanies(prev => [...prev, newCompany]);
       toast.success('Company created successfully');
       return newCompany;
@@ -35,7 +35,7 @@ export const useCompanies = () => {
 
   const updateCompany = async (id, companyData) => {
     try {
-      const updatedCompany = companyService.update(id, companyData);
+const updatedCompany = await companyService.update(id, companyData);
       if (updatedCompany) {
         setCompanies(prev => prev.map(company => 
           company.Id === updatedCompany.Id ? updatedCompany : company
@@ -53,7 +53,7 @@ export const useCompanies = () => {
 
   const deleteCompany = async (id) => {
     try {
-      const success = companyService.delete(id);
+const success = await companyService.delete(id);
       if (success) {
         setCompanies(prev => prev.filter(company => company.Id !== parseInt(id)));
         toast.success('Company deleted successfully');
@@ -68,7 +68,7 @@ export const useCompanies = () => {
   };
 
   const getCompanyById = (id) => {
-    return companyService.getById(id);
+return await companyService.getById(id);
   };
 
   useEffect(() => {

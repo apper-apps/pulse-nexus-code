@@ -32,7 +32,7 @@ export const useDeals = () => {
   const updateDeal = async (id, dealData) => {
     try {
       const updated = await dealService.update(id, dealData);
-      setDeals(prev => prev.map(d => d.Id === id ? updated : d));
+setDeals(prev => prev.map(d => d.Id === parseInt(id) ? updated : d));
       return updated;
     } catch (err) {
       throw new Error(err.message || 'Failed to update deal');
@@ -42,7 +42,7 @@ export const useDeals = () => {
   const deleteDeal = async (id) => {
     try {
       await dealService.delete(id);
-      setDeals(prev => prev.filter(d => d.Id !== id));
+setDeals(prev => prev.filter(d => d.Id !== parseInt(id)));
     } catch (err) {
       throw new Error(err.message || 'Failed to delete deal');
     }
