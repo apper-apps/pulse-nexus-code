@@ -83,9 +83,9 @@ const ContactTable = ({ contacts, onEditContact, onDeleteContact, onViewContact 
                 onClick={() => onViewContact(contact)}
               >
                 <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
+<div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-sm font-medium">
-                      {contact.name.charAt(0).toUpperCase()}
+                      {contact.Name?.charAt(0)?.toUpperCase() || 'N'}
                     </div>
                     <div>
                       <div className="font-medium text-white">{contact.name}</div>
